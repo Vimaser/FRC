@@ -24,25 +24,49 @@ const Locations = () => {
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <h1 className="highlighted-text" style={{ textAlign: "center", width: "70%" }}>Our Locations</h1>
-      <br />
-      <ul style={{ listStyleType: "none", padding: 0, width: "70%" }}>
+      <h1 className="highlighted-text">Our Locations</h1>
+
+      <ul
+        style={{
+          listStyleType: "none",
+          padding: 0,
+          width: "90%",
+          maxWidth: "600px",
+        }}
+      >
         {storeLocations.map((location, index) => (
-          <li key={index} style={{ textAlign: "left", marginBottom: "1.5rem" }}>
-            <h2 className="highlighted-text" style={{ textAlign: "center", width: "70%" }}>{location.name}</h2>
-            <br />
-            <p>{location.address}</p>
+          <li
+            key={index}
+            style={{
+              textAlign: "center",
+              marginBottom: "2rem",
+              padding: "1rem",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+              borderRadius: "8px",
+            }}
+          >
+            <h2 className="highlighted-text">{location.name}</h2>
+
+            <address style={{ fontStyle: "normal", margin: "0.5rem 0" }}>
+              {location.address}
+            </address>
+
             <p>{location.time}</p>
+
             <img
               src={location.imgSrc}
-              alt={`Store Location ${index + 1}`}
+              alt={location.name}
               style={{
                 display: "block",
-                margin: "0 auto",
-                width: "480px",
-                height: "360px",
+                margin: "1rem auto",
+                maxWidth: "100%",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                borderRadius: "8px",
               }}
             />
+
+            {/* going add a button/link for more details or maybe googlemaps */}
+            {/* <button style={{ marginTop: "0.5rem", backgroundColor: "#333", color: "#fff", padding: "0.5rem 1rem", border: "none", borderRadius: "4px" }}>Learn More</button> */}
           </li>
         ))}
       </ul>
