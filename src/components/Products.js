@@ -7,22 +7,22 @@ import product3 from "../img/products/product3.jpg";
 const Products = () => {
   const products = [
     {
-      name: "NON FR reg WORK JACKETS ",
+      name: "NON FR reg WORK JACKETS",
       price: "$15.00",
-      description: "15.00 EACH GET THEM EARLY",
+      description: "$15.00 EACH GET THEM EARLY",
       location: "Prairieville Fleamarket",
       imgSrc: product1,
     },
     {
       name: "NEW LADIES COVERALLS",
-      price: "65.00",
+      price: "$65.00",
       description: "NEW LADIES COVERALLS",
       location: "LIVEOAK FLEAMARKET",
       imgSrc: product2,
     },
     {
       name: "NEW LADIES COVERALLS",
-      price: "65.00",
+      price: "$65.00",
       description: "NEW LADIES COVERALLS",
       location: "Prairieville Fleamarket",
       imgSrc: product3,
@@ -59,7 +59,7 @@ const Products = () => {
             }}
           >
             <h2>
-              {product.name} - {product.price}
+              {product.name} {product.price}
             </h2>
             <img
               src={product.imgSrc}

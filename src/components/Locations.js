@@ -48,7 +48,7 @@ const Locations = () => {
           >
             <h2 className="highlighted-text">{location.name}</h2>
 
-            <address style={{ color: "white", fontStyle: "normal", margin: "0.5rem 0" }}>
+            <address style={{ backgroundColor: "yellow" ,color: "red", fontSize: "x-large", fontStyle: "bold", margin: "0.5rem 0" }}>
               {location.address}
             </address>
 

@@ -124,7 +124,14 @@ img {
     font-size: x-large;
     text-emphasis: bold;
   }
-
+  h1 {
+    font-size: x-large;
+    text-emphasis: bold;
+  }
+  h2 {
+    font-size: x-large;
+    text-emphasis: bold;
+  }
   .navbar {
       padding: 0.5rem 1rem;
   }
