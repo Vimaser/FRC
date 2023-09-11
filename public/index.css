@@ -119,6 +119,12 @@ img {
   body {
       font-size: large; 
   }
+  p {
+    color: white;
+    font-size: x-large;
+    text-emphasis: bold;
+  }
+
   .navbar {
       padding: 0.5rem 1rem;
   }

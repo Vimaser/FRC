@@ -33,16 +33,18 @@ const Products = () => {
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-        <br />
-    <h1
+      <br />
+      <h1
         className="highlighted-text"
         style={{ textAlign: "center", width: "70%" }}
       >
         Our Latest Products
       </h1>
       <br />
-      <p>Explore our wide range of fire-resistant and regular clothing.</p>
-
+      <p style={{ textAlign: "center", width: "70%" }}>
+        Explore our wide range of fire-resistant and regular clothing.
+      </p>
+      <br />
       <ul style={{ listStyleType: "none", padding: 0, width: "70%" }}>
         {products.map((product, index) => (
           <li
