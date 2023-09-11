@@ -14,6 +14,10 @@ body {
     background-color: yellow;
 }
 
+p {
+  color: white;
+}
+
 .highlighted-text {
     background-color: yellow;
     display: inline;
@@ -22,6 +26,11 @@ body {
 
 /* Navigation Bar */
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
     background-color: #333;
     color: #fff;
     padding: 1rem 2rem;

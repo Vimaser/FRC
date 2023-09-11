@@ -42,6 +42,7 @@ const Products = () => {
           <li
             key={index}
             style={{
+                color: "white",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
