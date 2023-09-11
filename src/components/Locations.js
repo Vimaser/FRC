@@ -29,7 +29,7 @@ const Locations = () => {
       <ul style={{ listStyleType: "none", padding: 0, width: "70%" }}>
         {storeLocations.map((location, index) => (
           <li key={index} style={{ textAlign: "left", marginBottom: "1.5rem" }}>
-            <h2 className="highlighted-text">{location.name}</h2>
+            <h2 className="highlighted-text" style={{ textAlign: "center", width: "70%" }}>{location.name}</h2>
             <br />
             <p>{location.address}</p>
             <p>{location.time}</p>
