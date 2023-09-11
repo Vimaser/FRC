@@ -97,9 +97,13 @@ body {
     background-size: cover;
 }
 
-@media (max-width: 768px) {
+@media only screen and (max-width: 768px) {
+  img {
+    width: 100%;
+    height: auto;
+  }
   body {
-      font-size: large; 
+      font-size: medium; 
   }
   .navbar {
       padding: 0.5rem 1rem;
