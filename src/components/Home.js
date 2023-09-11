@@ -29,7 +29,9 @@ const Home = () => {
       <div className="container mt-5">
         <div className="text-center mb-4">
           <img src={logoGif} alt="FRC Logo" width="500" height="500" />
-          <h1>Welcome to FRC</h1>
+          <br />
+          <br />
+          <h1 className="highlighted-text" style={{ textAlign: "center", width: "70%" }}>Welcome to FRC</h1>
         </div>
         <p className="text-center mb-4">
           Your premier destination for fire-resistant clothing.
@@ -46,8 +48,10 @@ const Home = () => {
             className="img-fluid"
             style={{ width: "600px", height: "450px", objectFit: "cover" }}
           />
+          <br />
         </div>
       </div>
+      <br />
     </div>
   );
 };
