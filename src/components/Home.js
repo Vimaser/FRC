@@ -28,6 +28,7 @@ const Home = () => {
     <div className="parallax">
       <div className="container mt-5">
         <div className="text-center mb-4">
+          <br />
           <img src={logoGif} alt="FRC Logo" width="500" height="500" />
           <br />
           <br />

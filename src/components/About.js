@@ -6,6 +6,7 @@ const About = () => (
   <div
     style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
   >
+    <br />
     <h1 className="highlighted-text" style={{ textAlign: "center", width: "70%" }}>About FRC</h1>
     <br />
     <p style={{ textAlign: "left", width: "70%" }}>

@@ -30,10 +30,16 @@ const Products = () => {
   ];
 
   return (
-    <div 
+    <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <h1 className="highlighted-text" style={{ textAlign: "center", width: "70%" }}>Our Latest Products</h1>
+        <br />
+    <h1
+        className="highlighted-text"
+        style={{ textAlign: "center", width: "70%" }}
+      >
+        Our Latest Products
+      </h1>
       <br />
       <p>Explore our wide range of fire-resistant and regular clothing.</p>
 
@@ -42,7 +48,7 @@ const Products = () => {
           <li
             key={index}
             style={{
-                color: "white",
+              color: "white",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",

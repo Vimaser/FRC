@@ -24,6 +24,7 @@ const Locations = () => {
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
+      <br />
       <h1 className="highlighted-text">Our Locations</h1>
 
       <ul
