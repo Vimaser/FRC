@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => (
   <footer style={{
@@ -8,7 +9,10 @@ const Footer = () => (
     fontSize: '0.875rem',
     borderTop: '1px solid #dee2e6'
   }}>
-    ©2023 FRC. All rights reserved.
+    ©2023 FRC. All rights reserved.{' '}
+    <Link to="/admin" style={{ color: 'yellow', textDecoration: 'underline' }}>
+      Admin Dashboard
+    </Link>
   </footer>
 );
 

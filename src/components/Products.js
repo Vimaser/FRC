@@ -1,33 +1,24 @@
-import React from "react";
-
-import product1 from "../img/products/product1.jpg";
-import product2 from "../img/products/product2.jpg";
-import product3 from "../img/products/product3.jpg";
+import React, { useState, useEffect } from "react";
+import { realTimeDb } from '../firebase';
+import { ref, onValue, off } from "firebase/database";
 
 const Products = () => {
-  const products = [
-    {
-      name: "NON FR reg WORK JACKETS",
-      price: "$15.00",
-      description: "$15.00 EACH GET THEM EARLY",
-      location: "Prairieville Fleamarket",
-      imgSrc: product1,
-    },
-    {
-      name: "NEW LADIES COVERALLS",
-      price: "$65.00",
-      description: "NEW LADIES COVERALLS",
-      location: "LIVEOAK FLEAMARKET",
-      imgSrc: product2,
-    },
-    {
-      name: "NEW LADIES COVERALLS",
-      price: "$65.00",
-      description: "NEW LADIES COVERALLS",
-      location: "Prairieville Fleamarket",
-      imgSrc: product3,
-    },
-  ];
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const productsRef = ref(realTimeDb, 'products');
+    const listener = onValue(productsRef, (snapshot) => {
+      const productsData = snapshot.val();
+      const productList = [];
+      for (let id in productsData) {
+        productList.push({ id, ...productsData[id] });
+      }
+      setProducts(productList);
+    });
+    return () => {
+      off(productsRef, listener);
+    };
+  }, []);
 
   return (
     <div
@@ -46,9 +37,9 @@ const Products = () => {
       </p>
       <br />
       <ul style={{ listStyleType: "none", padding: 0, width: "70%" }}>
-        {products.map((product, index) => (
+        {products.map((product) => (
           <li
-            key={index}
+            key={product.id}
             style={{
               color: "white",
               display: "flex",
@@ -62,7 +53,7 @@ const Products = () => {
               {product.name} {product.price}
             </h2>
             <img
-              src={product.imgSrc}
+              src={product.imageUrl}
               alt={product.name}
               style={{ width: "480px", height: "360px", marginBottom: "1rem" }}
             />

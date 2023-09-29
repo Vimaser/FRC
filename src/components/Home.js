@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import IMG1 from "../img/storeImage1.jpg";
 import IMG2 from "../img/StoreImage2.jpg";
-import IMG3 from "../img/StoreImage3.jpg";
+// import IMG3 from "../img/StoreImage3.jpg";
 import IMG4 from "../img/StoreImage4.jpg";
 import IMG5 from "../img/StoreImage5.jpg";
 import IMG6 from "../img/StoreImage6.jpg";
 import logoGif from "../img/FRC.gif"; // Adjust the path as needed
 
-const images = [IMG1, IMG2, IMG3, IMG4, IMG5, IMG6];
+const images = [IMG1, IMG2, IMG4, IMG5, IMG6];
 
 const Home = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

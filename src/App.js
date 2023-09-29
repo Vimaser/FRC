@@ -6,6 +6,8 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Products from "./components/Products";
 import Locations from "./components/Locations";
+import AdminLogin from "./components/AdminLogin";
+import AdminDashboard from "./components/AdminDashboard";
 import backgroundImage from "./img/background.jpg";
 
 const appStyle = {
@@ -27,6 +29,8 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/products" element={<Products />} />
             <Route path="/locations" element={<Locations />} />
+            <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/admindashboard" element={<AdminDashboard />} />
           </Routes>
         </div>
         <Footer />
@@ -35,4 +39,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
