@@ -49,9 +49,9 @@ const Products = () => {
               textAlign: "center",
             }}
           >
-            <h2>
-              {product.name} {product.price}
-            </h2>
+            <h1>
+              {product.name} <h1>${product.price}</h1>
+            </h1>
             <img
               src={product.imageUrl}
               alt={product.name}
@@ -62,6 +62,7 @@ const Products = () => {
           </li>
         ))}
       </ul>
+      <br/>
     </div>
   );
 };
