@@ -34,73 +34,49 @@ const AdminDashboard = () => {
     const productsRef = ref(realTimeDb, "products");
     const listener = onValue(productsRef, (snapshot) => {
       const productsData = snapshot.val();
-      const productList = [];
-      for (let id in productsData) {
-        productList.push({ id, ...productsData[id] });
-      }
+      const productList = Object.keys(productsData).map(id => ({ id, ...productsData[id] }));
       setProducts(productList);
     });
-    return () => {
-      off(productsRef, listener);
-    };
+    return () => off(productsRef, "value", listener);
   }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setNewProduct({ ...newProduct, [name]: value });
+    setNewProduct(prevState => ({ ...prevState, [name]: value }));
   };
 
   const handleFileChange = (e) => {
-    setNewProduct({ ...newProduct, image: e.target.files[0] });
+    setNewProduct(prevState => ({ ...prevState, image: e.target.files[0] }));
   };
 
-  const handleSubmit = async (e) => {
+  const uploadImage = async (image) => {
+    const imageRef = sRef(storage, `images/${image.name}`);
+    const uploadTaskSnapshot = await uploadBytesResumable(imageRef, image);
+    return await getDownloadURL(uploadTaskSnapshot.ref);
+  };
+
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     const { name, price, description, image } = newProduct;
+    let imageUrl = image ? await uploadImage(image) : "";
+
+    const productData = { name, price, description, imageUrl };
+    const productsRef = ref(realTimeDb, "products");
 
     try {
-      let imageUrl = "";
-      if (image) {
-        const imageRef = sRef(storage, `images/${image.name}`);
-        const uploadTaskSnapshot = await uploadBytesResumable(imageRef, image);
-        imageUrl = await getDownloadURL(uploadTaskSnapshot.ref);
-      }
-
-      const productData = { name, price, description, imageUrl };
-      const productsRef = ref(realTimeDb, "products");
-      await dbSet(push(productsRef), productData);
-
-      setNewProduct({ name: "", price: "", description: "", image: null });
-    } catch (error) {
-      console.error("Error adding product:", error);
-    }
-  };
-
-  const saveProduct = (productData) => {
-    const productsRef = ref(realTimeDb, "products");
-    if (editing) {
-      if (currentProductId) {
-        const productRef = ref(productsRef, currentProductId);
-        update(productRef, productData).then(() => {
-          setEditing(false);
-          setCurrentProductId(null);
-          setNewProduct({ name: "", price: "", description: "", image: null });
-        });
+      if (editing) {
+        await update(ref(productsRef, currentProductId), productData);
       } else {
-        console.error("No product ID found for updating");
+        await dbSet(push(productsRef), productData);
       }
-    } else {
-      push(productsRef, productData).then(() => {
-        setNewProduct({ name: "", price: "", description: "", image: null });
-      });
+      setNewProduct({ name: "", price: "", description: "", image: null });
+      setEditing(false);
+      setCurrentProductId(null);
+    } catch (error) {
+      console.error("Error handling product:", error);
     }
   };
-  
 
-  const handleDelete = (productId) => {
-    const productRef = ref(realTimeDb, "products/" + productId);
-    remove(productRef);
-  };
   const handleEdit = (product) => {
     setEditing(true);
     setCurrentProductId(product.id);
@@ -108,7 +84,16 @@ const AdminDashboard = () => {
       name: product.name,
       price: product.price,
       description: product.description,
+      image: null, 
     });
+  };
+
+  const handleDelete = async (productId) => {
+    try {
+      await remove(ref(realTimeDb, "products/" + productId));
+    } catch (error) {
+      console.error("Error deleting product:", error);
+    }
   };
 
   const handleLogout = async () => {
@@ -122,17 +107,13 @@ const AdminDashboard = () => {
 
   return (
     <div>
-      <br />
-      <br />
       <h2>
         Logout when you're done!
-        <p>Edit function doesn't work right now, I'll have to fix it later.</p>
         <div>
           <button onClick={handleLogout}>LOGOUT</button>
         </div>
       </h2>
-      <br />
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleFormSubmit}>
         <input
           type="text"
           name="name"
@@ -161,7 +142,6 @@ const AdminDashboard = () => {
           {editing ? "Save Changes" : "Add Product"}
         </button>
       </form>
-      <br />
       <ul>
         {products.map((product) => (
           <li key={product.id}>
@@ -177,7 +157,6 @@ const AdminDashboard = () => {
           </li>
         ))}
       </ul>
-      <br />
     </div>
   );
 };
